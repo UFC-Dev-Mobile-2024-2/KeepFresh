@@ -8,7 +8,7 @@ export default function Apresetacao2() {
       {/* Logo */}
       <View style={styles.logoContainer}>
         <Image
-          source={require("../../assets/images/logo-simplificada.png")} 
+          source={require("../assets/images/logo-simplificada.png")} 
           style={styles.logo}
           resizeMode="contain"
         />
@@ -17,7 +17,7 @@ export default function Apresetacao2() {
       {/* Ilustração */}
       <View style={styles.illustrationContainer}>
         <Image
-          source={require("../../assets/images/Illustrations.png")} 
+          source={require("../assets/images/Illustrations.png")} 
           style={styles.illustration}
           resizeMode="contain"
         />
