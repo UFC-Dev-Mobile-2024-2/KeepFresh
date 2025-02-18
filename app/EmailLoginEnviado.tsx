@@ -18,7 +18,7 @@ const EmailVerificationScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 8,
+    flex: 1,
     justifyContent: 'flex-start', 
     alignItems: 'flex-start', 
     backgroundColor: 'white',
