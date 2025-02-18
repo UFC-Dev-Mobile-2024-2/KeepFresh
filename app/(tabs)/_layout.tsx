@@ -18,7 +18,7 @@ export default function TabLayout() {
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
-        tabBarStyle: route.name === "index" ? { display: "none" } : {},
+        tabBarStyle: route.name === "index" || route.name === "Apresentacao2" ? { display: "none" } : {},
       })}
     >
       <Tabs.Screen name="explore" options={{ title: "Explorar" }} />
