@@ -5,7 +5,6 @@ import { Button, Text } from "react-native-paper";
 export default function Apresetacao2() {
   return (
     <View style={styles.container}>
-      {/* Logo */}
       <View style={styles.logoContainer}>
         <Image
           source={require("../assets/images/logo-simplificada.png")} 
@@ -14,7 +13,6 @@ export default function Apresetacao2() {
         />
       </View>
 
-      {/* Ilustração */}
       <View style={styles.illustrationContainer}>
         <Image
           source={require("../assets/images/Illustrations.png")} 
@@ -23,7 +21,6 @@ export default function Apresetacao2() {
         />
       </View>
 
-      {/* Texto principal */}
       <View style={styles.textContainer}>
         <Text style={styles.title} variant="headlineMedium">
           Chega de desperdício
@@ -33,7 +30,6 @@ export default function Apresetacao2() {
         </Text>
       </View>
 
-      {/* Botão */}
       <Button mode="contained" style={styles.button} onPress={() => console.log("Botão clicado")}>
         Se conecte!
       </Button>
