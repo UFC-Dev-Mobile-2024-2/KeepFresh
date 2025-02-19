@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, Image, FlatList } from "react-native";
 import { Appbar, Searchbar, Card, Button, Text, FAB, BottomNavigation } from "react-native-paper";
 
-export default function home() {
+export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -19,8 +19,8 @@ export default function home() {
 
   return (
     <View style={styles.container}>
-      <Appbar.Header>
-        <Appbar.Content title="KeepFresh" titleStyle={styles.logoText} />
+      <Appbar.Header style={styles.appHeader}>
+        <Image source={require("../../assets/images/logo-simplificada.png")} style={styles.logoImage} />
       </Appbar.Header>
 
       <Searchbar
@@ -34,7 +34,14 @@ export default function home() {
 
       <FAB icon="plus" style={styles.fab} onPress={() => console.log("Adicionar item")} />
 
-      <BottomNavigation navigationState={{ index, routes }} onIndexChange={setIndex} renderScene={renderScene} />
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+        barStyle={styles.bottomNavigation}
+        activeColor="#007BFF"
+        inactiveColor="#666"
+      />
     </View>
   );
 }
@@ -45,14 +52,14 @@ const HomeContent = () => {
       id: "1",
       title: "Geladeira",
       description: "Confira sua lista",
-      image: require("../../assets/images/fridge.png"), 
+      image: require("../../assets/images/fridge.png"),
       items: "Sorvete, Queijo, Presunto, Leite, Iogurte...",
     },
     {
       id: "2",
       title: "Freezer",
       description: "Confira sua lista",
-      image: require("../../assets/images/freezer.png"), 
+      image: require("../../assets/images/freezer.png"),
       items: "Carne de Porco, Maminha, Fraldinha, Picanha...",
     },
   ];
@@ -69,7 +76,7 @@ const HomeContent = () => {
             <Text>{item.items}</Text>
           </Card.Content>
           <Card.Actions>
-            <Button mode="contained" onPress={() => console.log(`Visualizar ${item.title}`)}>
+            <Button mode="contained" style={styles.button} labelStyle={styles.buttonText} onPress={() => console.log(`Visualizar ${item.title}`)}>
               Visualizar
             </Button>
           </Card.Actions>
@@ -84,28 +91,58 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
-  logoText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
+  appHeader: {
+    backgroundColor: "transparent",
+    elevation: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    height: 70,
+  },
+  logoImage: {
+    width: 180,
+    height: 50,
+    resizeMode: "contain",
   },
   searchBar: {
     margin: 10,
-    borderRadius: 10,
+    borderRadius: 20,
+    backgroundColor: "#F3F3F3",
   },
   card: {
-    margin: 10,
-    borderRadius: 10,
-    backgroundColor: "#F8F8F8",
+    marginHorizontal: 15,
+    marginVertical: 10,
+    borderRadius: 20,
+    backgroundColor: "#FAF4FF",
+    elevation: 3,
   },
   cardImage: {
     height: 180,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  button: {
+    backgroundColor: "#007BFF",
+    borderRadius: 20,
+    margin: 10,
+    marginTop: 15,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
   },
   fab: {
     position: "absolute",
     right: 20,
-    bottom: 70,
+    bottom: 85,
     backgroundColor: "#007BFF",
+    elevation: 6,
+  },
+  bottomNavigation: {
+    backgroundColor: "#FFFFFF",
+    elevation: 10,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    height: 60,
   },
   placeholder: {
     textAlign: "center",
