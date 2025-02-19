@@ -19,12 +19,10 @@ export default function home() {
 
   return (
     <View style={styles.container}>
-      {/* Cabeçalho */}
       <Appbar.Header>
         <Appbar.Content title="KeepFresh" titleStyle={styles.logoText} />
       </Appbar.Header>
 
-      {/* Barra de Pesquisa */}
       <Searchbar
         placeholder="Procurar Alimento"
         onChangeText={setSearchQuery}
@@ -32,13 +30,10 @@ export default function home() {
         style={styles.searchBar}
       />
 
-      {/* Conteúdo Principal */}
       <HomeContent />
 
-      {/* Botão Flutuante */}
       <FAB icon="plus" style={styles.fab} onPress={() => console.log("Adicionar item")} />
 
-      {/* Navegação Inferior */}
       <BottomNavigation navigationState={{ index, routes }} onIndexChange={setIndex} renderScene={renderScene} />
     </View>
   );
@@ -109,7 +104,7 @@ const styles = StyleSheet.create({
   fab: {
     position: "absolute",
     right: 20,
-    bottom: 70, // Acima da barra de navegação
+    bottom: 70,
     backgroundColor: "#007BFF",
   },
   placeholder: {
