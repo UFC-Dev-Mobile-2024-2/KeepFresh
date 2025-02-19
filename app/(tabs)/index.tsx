@@ -5,16 +5,14 @@ import { Button, Text } from "react-native-paper";
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      {/* Logo e fundo */}
       <View style={styles.logoContainer}>
         <Image
-          source={require("../../assets/images/logo.png")} // Substitua pelo seu logo
+          source={require("../../assets/images/logo.png")} 
           style={styles.logo}
           resizeMode="contain"
         />
       </View>
 
-      {/* Mensagem de boas-vindas */}
       <View style={styles.textContainer}>
         <Text style={styles.title} variant="headlineMedium">
           Boas Vindas!
@@ -24,7 +22,6 @@ export default function HomeScreen() {
         </Text>
       </View>
 
-      {/* Botão */}
       <Button mode="contained" style={styles.button} onPress={() => console.log("Botão clicado")}>
         Venha nos conhecer
       </Button>
