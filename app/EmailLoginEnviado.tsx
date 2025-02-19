@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 
 const EmailVerificationScreen = () => {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="white"/>
       <Text style={styles.header} variant="headlineMedium">Verifique seu e-mail</Text>
       <Text style={styles.subText} variant="bodySmall">
         Verifique sua caixa de entrada para validar seu login!
@@ -23,7 +24,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start', 
     backgroundColor: 'white',
     padding: 24,
-    marginTop: 68,
   },
   header: {
     textAlign: 'left', 
