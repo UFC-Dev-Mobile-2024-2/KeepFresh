@@ -27,7 +27,7 @@ O **KeepFresh** é um aplicativo mobile que ajuda você a gerenciar a validade d
 
 Aqui estão as pessoas incríveis que ajudaram a tornar o **KeepFresh** realidade:  
 
-👤 **[Bianca Alves](https://github.com/biancalvesmart** – Produc Owner, Dev e UX/UI Designer  
+👤 **[Bianca Alves](https://github.com/biancalvesmart)** – Produc Owner, Dev e UX/UI Designer  
 👤 **[Francisco Edimar](https://github.com/iEdymar)** – Dev e UX/UI Designer  
 👤 **[Isabela Vieira](https://github.com/isabonham)** – Dev e UX/UI Designer
 👤 **[Tony Matheus](https://github.com/TonyM8585)** – Dev e UX/UI Designer
