@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { Button, Text } from "react-native-paper";
+import { useRouter } from "expo-router";
 
-export default function Apresetacao2() {
+export default function Apresentacao2() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -30,7 +33,11 @@ export default function Apresetacao2() {
         </Text>
       </View>
 
-      <Button mode="contained" style={styles.button} onPress={() => console.log("Botão clicado")}>
+      <Button 
+        mode="contained" 
+        style={styles.button} 
+        onPress={() => router.push("/login")} 
+      >
         Se conecte!
       </Button>
     </View>
@@ -84,4 +91,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
