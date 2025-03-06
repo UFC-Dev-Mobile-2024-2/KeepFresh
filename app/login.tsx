@@ -1,14 +1,48 @@
-import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, TouchableOpacity, Alert, Platform } from "react-native";
 import { Text, TextInput, Button } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
-import { NavigationProp } from "@react-navigation/native";
+import { useRouter } from "expo-router";
 
-type Props = {
-  navigation: NavigationProp<any>;
-};
+export default function LoginScreen() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-const LoginScreen: React.FC<Props> = ({ navigation }) => {
+  const handleLogin = async () => {
+    console.log("Botão de login pressionado");
+  
+    if (!email.trim() || !password.trim()) {
+      Alert.alert("Erro", "Preencha todos os campos corretamente!");
+      return;
+    }
+  
+    setLoading(true);
+    try {
+      console.log("Fazendo requisição para API...");
+  
+      const response = await fetch("https://reqres.in/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password: password.trim() }),
+      });
+  
+      const data = await response.json();
+      console.log("Resposta da API:", data);
+  
+      if (response.ok) {
+        Alert.alert("Sucesso", "Login realizado!");
+        router.replace("/home");
+      } else {
+        Alert.alert("Erro no Login", "E-mail ou senha incorretos.");
+      }
+    } catch (error) {
+      Alert.alert("Erro de Conexão", "Verifique sua internet e tente novamente.");
+    }
+    setLoading(false);
+  };
+  
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -25,30 +59,36 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         mode="outlined"
         style={styles.input}
         autoCapitalize="none"
+        keyboardType="email-address"
+        value={email}
+        onChangeText={setEmail}
       />
       <TextInput
         label="SENHA"
         mode="outlined"
         secureTextEntry
         style={styles.input}
+        value={password}
+        onChangeText={setPassword}
       />
 
-      <TouchableOpacity onPress={() => alert("Função ainda não implementada")}>
+      <TouchableOpacity onPress={() => router.push("/ForgotPassword")}>
         <Text style={styles.forgotPassword}>Esqueceu sua senha?</Text>
       </TouchableOpacity>
 
       <Button
         mode="contained"
-        onPress={() => alert("Login ainda não implementado")}
+        onPress={handleLogin}
         style={styles.loginButton}
         contentStyle={{ paddingVertical: 14 }}
+        loading={loading}
       >
         ENTRAR
       </Button>
 
       <View style={styles.registerContainer}>
         <Text>Não tem uma conta?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+        <TouchableOpacity onPress={() => router.push("/novaConta")}>
           <Text style={styles.registerText}>Crie uma nova conta!</Text>
         </TouchableOpacity>
       </View>
@@ -65,7 +105,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       </Button>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -126,5 +166,3 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
 });
-
-export default LoginScreen;
