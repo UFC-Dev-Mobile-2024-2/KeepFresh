@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { Button, Text } from "react-native-paper";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -22,12 +25,16 @@ export default function HomeScreen() {
         </Text>
       </View>
 
-      <Button mode="contained" style={styles.button} onPress={() => console.log("Botão clicado")}>
+      <Button
+        mode="contained"
+        style={styles.button}
+        onPress={() => router.push("/Apresentacao2")} 
+      >
         Venha nos conhecer
       </Button>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { Button, Text } from "react-native-paper";
 
-export default function Apresetacao2() {
+export default function Apresentacao2() {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
