@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
-import _ForgotPassword from './_ForgotPassword'; // Importa a tela
+import _ForgotPassword from './_ForgotPassword';
 
 const ForgotPassword = () => {
   return (
