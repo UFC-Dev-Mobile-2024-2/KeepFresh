@@ -1,36 +1,32 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Button, Icon } from 'react-native-paper'; // Importação do Icon
+import { Text, Button, Icon } from 'react-native-paper';
 
 const EmailVerificado = () => {
   return (
     <View style={styles.container}>
-      {/* Ícone de visto verde */}
       <View style={styles.iconContainer}>
         <Icon
-          source="check-circle" // Nome do ícone
-          size={64} // Tamanho do ícone
-          color="#34C759" // Cor personalizada para o visto
+          source="check-circle" 
+          size={64} 
+          color="#34C759"
         />
       </View>
 
-      {/* Título */}
       <Text variant="headlineMedium" style={styles.title}>
         E-mail verificado
       </Text>
 
-      {/* Mensagem */}
       <Text variant="bodyLarge" style={styles.message}>
         Seu e-mail foi verificado com sucesso
       </Text>
 
-      {/* Botão */}
       <Button
         mode="contained"
         onPress={() => {}}
         style={styles.button}
         labelStyle={styles.buttonText}
-        buttonColor="#007AFF" // Cor personalizada para o botão
+        buttonColor="#007AFF"
       >
         Concluído
       </Button>
@@ -44,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#ffffff', // Fundo branco
+    backgroundColor: '#ffffff', 
   },
   iconContainer: {
     marginBottom: 24,
@@ -55,12 +51,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 8,
     textAlign: 'center',
-    color: '#000', // Cor do título
+    color: '#000', 
   },
   message: {
     marginBottom: 32,
     textAlign: 'center',
-    color: '#555', // Cor da mensagem
+    color: '#555', 
   },
   button: {
     width: '100%',
@@ -69,7 +65,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    color: '#ffffff', // Cor do texto do botão
+    color: '#ffffff', 
   },
 });
 
