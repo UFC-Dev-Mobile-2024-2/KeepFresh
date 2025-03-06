@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Image, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Image, FlatList, ActivityIndicator } from "react-native";
 import { Appbar, Searchbar, Card, Button, Text, FAB, BottomNavigation } from "react-native-paper";
+import { useRouter } from "expo-router";
 
 export default function Home() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -32,7 +34,7 @@ export default function Home() {
 
       <HomeContent />
 
-      <FAB icon="plus" style={styles.fab} onPress={() => console.log("Adicionar item")} />
+      <FAB icon="plus" style={styles.fab} onPress={() => router.push("/adicionarItem")} />
 
       <BottomNavigation
         navigationState={{ index, routes }}
@@ -47,22 +49,42 @@ export default function Home() {
 }
 
 const HomeContent = () => {
-  const data = [
-    {
-      id: "1",
-      title: "Geladeira",
-      description: "Confira sua lista",
-      image: require("../../assets/images/fridge.png"),
-      items: "Sorvete, Queijo, Presunto, Leite, Iogurte...",
-    },
-    {
-      id: "2",
-      title: "Freezer",
-      description: "Confira sua lista",
-      image: require("../../assets/images/freezer.png"),
-      items: "Carne de Porco, Maminha, Fraldinha, Picanha...",
-    },
-  ];
+  const router = useRouter();
+  const [data, setData] = useState<{ id: string; title: string; description: string; image: any; items: string; }[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://my-json-server.typicode.com/typicode/demo/posts") 
+      .then((response) => response.json())
+      .then(() => {
+        console.log("Dados carregados!");
+        setData([
+          {
+            id: "1",
+            title: "Geladeira",
+            description: "Confira sua lista",
+            image: require("../../assets/images/fridge.png"),
+            items: "Sorvete, Queijo, Presunto, Leite, Iogurte...",
+          },
+          {
+            id: "2",
+            title: "Freezer",
+            description: "Confira sua lista",
+            image: require("../../assets/images/freezer.png"),
+            items: "Carne de Porco, Maminha, Fraldinha, Picanha...",
+          },
+        ]);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar dados:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color="#007BFF" style={styles.loading} />;
+  }
 
   return (
     <FlatList
@@ -76,7 +98,7 @@ const HomeContent = () => {
             <Text>{item.items}</Text>
           </Card.Content>
           <Card.Actions>
-            <Button mode="contained" style={styles.button} labelStyle={styles.buttonText} onPress={() => console.log(`Visualizar ${item.title}`)}>
+            <Button mode="contained" style={styles.button} labelStyle={styles.buttonText} onPress={() => router.push(`/ProductsScreen`)}>
               Visualizar
             </Button>
           </Card.Actions>
@@ -150,5 +172,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#666",
   },
+  loading: {
+    marginTop: 50,
+  },
 });
-
