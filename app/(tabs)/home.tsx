@@ -34,7 +34,7 @@ export default function Home() {
 
       <HomeContent />
 
-      <FAB icon="plus" style={styles.fab} onPress={() => router.push("/adicionarItem")} />
+      <FAB icon="plus" style={styles.fab} onPress={() => router.push("/_ProductsScreen")} />
 
       <BottomNavigation
         navigationState={{ index, routes }}
@@ -98,7 +98,7 @@ const HomeContent = () => {
             <Text>{item.items}</Text>
           </Card.Content>
           <Card.Actions>
-            <Button mode="contained" style={styles.button} labelStyle={styles.buttonText} onPress={() => router.push(`/ProductsScreen`)}>
+            <Button mode="contained" style={styles.button} labelStyle={styles.buttonText} onPress={() => router.push(`/_ProductsScreen`)}>
               Visualizar
             </Button>
           </Card.Actions>
