@@ -34,8 +34,6 @@ export default function Home() {
 
       <HomeContent />
 
-      <FAB icon="plus" style={styles.fab} onPress={() => router.push("/_ProductsScreen")} />
-
       <BottomNavigation
         navigationState={{ index, routes }}
         onIndexChange={setIndex}
@@ -50,30 +48,15 @@ export default function Home() {
 
 const HomeContent = () => {
   const router = useRouter();
-  const [data, setData] = useState<{ id: string; title: string; description: string; image: any; items: string; }[]>([]);
+  const [data, setData] = useState<{ id: string; title: string; description: string; image: string; items: string }[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://my-json-server.typicode.com/typicode/demo/posts") 
+    fetch("https://67cb3bf23395520e6af4c4c4.mockapi.io/despensa")
       .then((response) => response.json())
-      .then(() => {
-        console.log("Dados carregados!");
-        setData([
-          {
-            id: "1",
-            title: "Geladeira",
-            description: "Confira sua lista",
-            image: require("../../assets/images/fridge.png"),
-            items: "Sorvete, Queijo, Presunto, Leite, Iogurte...",
-          },
-          {
-            id: "2",
-            title: "Freezer",
-            description: "Confira sua lista",
-            image: require("../../assets/images/freezer.png"),
-            items: "Carne de Porco, Maminha, Fraldinha, Picanha...",
-          },
-        ]);
+      .then((fetchedData) => {
+        console.log("Dados carregados!", fetchedData);
+        setData(fetchedData);
         setLoading(false);
       })
       .catch((error) => {
@@ -93,7 +76,7 @@ const HomeContent = () => {
       renderItem={({ item }) => (
         <Card style={styles.card}>
           <Card.Title title={item.title} subtitle={item.description} />
-          <Card.Cover source={item.image} style={styles.cardImage} />
+          <Card.Cover source={require("../../assets/images/fridge.png")} style={styles.cardImage} />
           <Card.Content>
             <Text>{item.items}</Text>
           </Card.Content>
@@ -176,3 +159,4 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
 });
+
