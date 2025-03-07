@@ -1,32 +1,36 @@
 import React, { createContext, useContext, useState } from 'react';
 import { Produto } from './Produto';
 
-const ProductsContext = createContext<{
+type ProductsContextType = {
   products: Produto[];
   addProduct: (product: Produto) => void;
-  removeProduct: (productId: string) => void;
   updateProduct: (updatedProduct: Produto) => void;
-} | undefined>(undefined);
+  removeProduct: (productId: string) => void;
+};
 
-export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const ProductsContext = createContext<ProductsContextType | undefined>(undefined);
+
+export const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
   const [products, setProducts] = useState<Produto[]>([]);
 
   const addProduct = (product: Produto) => {
     setProducts((prevProducts) => [...prevProducts, product]);
   };
 
+  const updateProduct = (updatedProduct: Produto) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((item) =>
+        item.id === updatedProduct.id ? updatedProduct : item
+      )
+    );
+  };
+
   const removeProduct = (productId: string) => {
     setProducts((prevProducts) => prevProducts.filter((product) => product.id !== productId));
   };
 
-  const updateProduct = (updatedProduct: Produto) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) => (product.id === updatedProduct.id ? updatedProduct : product))
-    );
-  };
-
   return (
-    <ProductsContext.Provider value={{ products, addProduct, removeProduct, updateProduct }}>
+    <ProductsContext.Provider value={{ products, addProduct, updateProduct, removeProduct }}>
       {children}
     </ProductsContext.Provider>
   );
