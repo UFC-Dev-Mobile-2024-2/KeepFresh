@@ -35,7 +35,7 @@ const Cadastro = () => {
 
   const irParaHome = () => {
     if (validarCampos()) {
-      router.push('/login');
+      router.push('/EmailLoginEnviado');
     }
   };
 
@@ -122,7 +122,7 @@ const Cadastro = () => {
           labelStyle={styles.buttonText}
           buttonColor="#007AFF"
         >
-          Entrar
+          Cadastrar-se
         </Button>
 
         <Text variant="bodySmall" style={[styles.terms, { color: theme.colors.onSurfaceVariant }]}>
