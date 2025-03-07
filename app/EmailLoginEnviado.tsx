@@ -1,8 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, StatusBar } from 'react-native';
 import { Text, Button } from 'react-native-paper';
+import { useRouter } from 'expo-router'; 
 
 const EmailVerificationScreen = () => {
+  const router = useRouter(); 
+
+  const handleSendAgain = () => {
+    router.push('/emailVerificado'); 
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="white"/>
@@ -10,7 +17,7 @@ const EmailVerificationScreen = () => {
       <Text style={styles.subText} variant="bodySmall">
         Verifique sua caixa de entrada para validar seu login!
       </Text>
-      <Button mode="contained" style={styles.button} onPress={() => {}}>
+      <Button mode="contained" style={styles.button} onPress={handleSendAgain}>
         ENVIAR NOVAMENTE
       </Button>
     </View>
