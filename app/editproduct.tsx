@@ -66,7 +66,7 @@ const EditProductScreen = () => {
         <IconButton icon="plus" onPress={() => setQuantity(quantity + 1)} />
       </View>
 
-      <Button mode="contained" style={styles.editButton} onPress={() => router.push('/itemadd')}>
+      <Button mode="contained" style={styles.editButton} onPress={() => router.push('/_ProductsScreen')}>
         Editar Item
       </Button>
     </View>
