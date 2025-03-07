@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { Text, TextInput, Button, useTheme, Appbar } from 'react-native-paper';
-import { useRouter } from 'expo-router'; // Importação correta do useRouter
+import { useRouter } from 'expo-router'; 
 
 const Cadastro = () => {
-  const theme = useTheme(); // Hook para acessar o tema do Material Design
-  const router = useRouter(); // Hook para navegação
-  const [senhaVisivel, setSenhaVisivel] = useState(false); // Estado para controlar a visibilidade da senha
-  const [nome, setNome] = useState(''); // Estado para o campo de nome
-  const [email, setEmail] = useState(''); // Estado para o campo de e-mail
-  const [senha, setSenha] = useState(''); // Estado para o campo de senha
-  const [erro, setErro] = useState({ nome: false, email: false, senha: false }); // Estado para controlar erros de validação
+  const theme = useTheme(); 
+  const router = useRouter(); 
+  const [senhaVisivel, setSenhaVisivel] = useState(false); 
+  const [nome, setNome] = useState(''); 
+  const [email, setEmail] = useState(''); 
+  const [senha, setSenha] = useState(''); 
+  const [erro, setErro] = useState({ nome: false, email: false, senha: false });
 
-  // Função para validar os campos
   const validarCampos = () => {
     let camposValidos = true;
     const novosErros = { nome: false, email: false, senha: false };
@@ -30,37 +29,31 @@ const Cadastro = () => {
       camposValidos = false;
     }
 
-    setErro(novosErros); // Atualiza o estado de erro
+    setErro(novosErros); 
     return camposValidos;
   };
 
-  // Função para navegar para a tela Home após validação
   const irParaHome = () => {
     if (validarCampos()) {
-      router.push('/login'); // Navega para a tela Home se os campos estiverem preenchidos
+      router.push('/login');
     }
   };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      {/* Barra de Topo (Header) */}
       <Appbar.Header>
         <Appbar.BackAction onPress={() => router.push('/login')} /> {/* Seta de voltar para a tela de Login */}
       </Appbar.Header>
 
-      {/* Conteúdo da Tela */}
       <View style={styles.content}>
-        {/* Título Centralizado */}
         <Text variant="headlineMedium" style={[styles.title, { color: theme.colors.onBackground }]}>
           Cadastro
         </Text>
 
-        {/* Subtítulo */}
         <Text variant="bodyMedium" style={[styles.subtitle, { color: theme.colors.onSurfaceVariant }]}>
           Crie uma nova conta
         </Text>
 
-        {/* Campo de Nome */}
         <TextInput
           label="NOME"
           mode="outlined"
@@ -69,17 +62,16 @@ const Cadastro = () => {
           value={nome}
           onChangeText={(text) => {
             setNome(text);
-            setErro({ ...erro, nome: false }); // Remove o erro ao digitar
+            setErro({ ...erro, nome: false });
           }}
-          error={erro.nome} // Destaca o campo se houver erro
+          error={erro.nome}
           theme={{
             colors: {
-              primary: erro.nome ? 'red' : theme.colors.primary, // Cor da borda em vermelho se houver erro
+              primary: erro.nome ? 'red' : theme.colors.primary,
             },
           }}
         />
 
-        {/* Campo de E-mail */}
         <TextInput
           label="E-MAIL"
           mode="outlined"
@@ -88,17 +80,16 @@ const Cadastro = () => {
           value={email}
           onChangeText={(text) => {
             setEmail(text);
-            setErro({ ...erro, email: false }); // Remove o erro ao digitar
+            setErro({ ...erro, email: false });
           }}
-          error={erro.email} // Destaca o campo se houver erro
+          error={erro.email} 
           theme={{
             colors: {
-              primary: erro.email ? 'red' : theme.colors.primary, // Cor da borda em vermelho se houver erro
+              primary: erro.email ? 'red' : theme.colors.primary, 
             },
           }}
         />
 
-        {/* Campo de Senha */}
         <TextInput
           label="SENHA"
           mode="outlined"
@@ -107,40 +98,37 @@ const Cadastro = () => {
           value={senha}
           onChangeText={(text) => {
             setSenha(text);
-            setErro({ ...erro, senha: false }); // Remove o erro ao digitar
+            setErro({ ...erro, senha: false }); 
           }}
-          error={erro.senha} // Destaca o campo se houver erro
-          secureTextEntry={!senhaVisivel} // Oculta ou exibe a senha
+          error={erro.senha} 
+          secureTextEntry={!senhaVisivel}
           right={
             <TextInput.Icon
-              icon={senhaVisivel ? 'eye-off' : 'eye'} // Ícone de olho
-              onPress={() => setSenhaVisivel(!senhaVisivel)} // Alterna a visibilidade da senha
+              icon={senhaVisivel ? 'eye-off' : 'eye'} 
+              onPress={() => setSenhaVisivel(!senhaVisivel)} 
             />
           }
           theme={{
             colors: {
-              primary: erro.senha ? 'red' : theme.colors.primary, // Cor da borda em vermelho se houver erro
+              primary: erro.senha ? 'red' : theme.colors.primary, 
             },
           }}
         />
 
-        {/* Botão de Cadastro */}
         <Button
           mode="contained"
-          onPress={irParaHome} // Navega para a tela Home após validação
+          onPress={irParaHome} 
           style={styles.button}
           labelStyle={styles.buttonText}
-          buttonColor="#007AFF" // Cor personalizada para o botão
+          buttonColor="#007AFF"
         >
           Entrar
         </Button>
 
-        {/* Termos de Uso */}
         <Text variant="bodySmall" style={[styles.terms, { color: theme.colors.onSurfaceVariant }]}>
           Fazendo seu cadastro você está concordando com os Termos de Uso e Política de Privacidade
         </Text>
 
-        {/* Divisor */}
         <View style={styles.dividerContainer}>
           <View style={[styles.divider, { backgroundColor: theme.colors.outline }]} />
           <Text variant="bodySmall" style={[styles.dividerText, { color: theme.colors.onSurfaceVariant }]}>
@@ -149,7 +137,6 @@ const Cadastro = () => {
           <View style={[styles.divider, { backgroundColor: theme.colors.outline }]} />
         </View>
 
-        {/* Botão de Conectar com Gmail */}
         <Button
           mode="outlined"
           onPress={() => {}}
@@ -210,7 +197,7 @@ const styles = StyleSheet.create({
   },
   googleButton: {
     width: '100%',
-    borderColor: '#007AFF', // Cor da borda do botão do Gmail
+    borderColor: '#007AFF',
   },
   googleButtonText: {
     fontWeight: 'bold',
