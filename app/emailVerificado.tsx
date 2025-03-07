@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button, Icon } from 'react-native-paper';
+import { useRouter } from 'expo-router'; // Importação do useRouter
 
 const EmailVerificado = () => {
+  const router = useRouter(); // Hook para navegação
+
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
@@ -23,7 +26,7 @@ const EmailVerificado = () => {
 
       <Button
         mode="contained"
-        onPress={() => {}}
+        onPress={() => router.push('/login')} // Navega para a tela Home
         style={styles.button}
         labelStyle={styles.buttonText}
         buttonColor="#007AFF"
