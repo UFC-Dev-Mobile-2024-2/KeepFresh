@@ -39,26 +39,33 @@ const EditProductScreen = () => {
 
   return (
     <View style={styles.container}>
+      {/* Botão de voltar */}
       <IconButton icon="arrow-left" size={24} style={styles.backButton} onPress={() => router.push('/_ProductsScreen')} />
 
+      {/* Imagem do Produto */}
       <View style={styles.imageContainer}>
         <Image source={{ uri: product.image || 'https://via.placeholder.com/300' }} style={styles.image} />
       </View>
 
+      {/* Nome do Produto */}
       <TextInput label="Nome do Produto" value={productName} onChangeText={setProductName} style={styles.input} />
 
+      {/* Data de Validade */}
       <SafeAreaProvider>
         <DatePickerInput locale="pt" label="Data de Validade" value={inputDate} onChange={(d) => setInputDate(d)} inputMode="start" style={styles.input} />
       </SafeAreaProvider>
 
+      {/* Categoria do Produto */}
       <List.Accordion title="Categoria do Produto" style={styles.dropdown}>
         <List.Item title="Armário" />
         <List.Item title="Geladeira" />
         <List.Item title="Freezer" />
       </List.Accordion>
 
+      {/* Observação */}
       <TextInput label="Observação (opcional)" value={observation} onChangeText={setObservation} style={styles.input} />
 
+      {/* Seção de Quantidade */}
       <View style={styles.quantityContainer}>
         <Text style={styles.quantityLabel}>Quantidade:</Text>
         <IconButton icon="minus" onPress={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} />
@@ -66,8 +73,8 @@ const EditProductScreen = () => {
         <IconButton icon="plus" onPress={() => setQuantity(quantity + 1)} />
       </View>
 
-      <Button mode="contained" style={styles.editButton} onPress={() => router.push('/_ProductsScreen')}>
-        Editar Item
+      <Button mode="contained" style={styles.editButton} onPress={handleSave}>
+        Salvar
       </Button>
     </View>
   );
@@ -125,7 +132,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     marginTop: 20,
-    backgroundColor: '#007AFF', 
+    backgroundColor: '#007AFF',
     paddingVertical: 8,
   },
 });

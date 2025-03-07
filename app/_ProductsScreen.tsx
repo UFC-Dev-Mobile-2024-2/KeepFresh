@@ -26,7 +26,7 @@ const _ProductsScreen = () => {
     });
   };
 
-  const handleDeleteProduct = (productId: string) => {
+  const handleRemoveProduct = (productId: string) => {
     removeProduct(productId);
   };
 
@@ -42,7 +42,7 @@ const _ProductsScreen = () => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Button mode="contained" buttonColor='#007AFF' onPress={() => handleDeleteProduct(item.id)}>
+        <Button mode="contained" buttonColor='#007AFF' onPress={() => handleRemoveProduct(item.id)}>
           Consumido
         </Button>
         <IconButton icon="pencil" size={20} style={styles.editButton} onPress={() => handleEditProduct(item)} />
