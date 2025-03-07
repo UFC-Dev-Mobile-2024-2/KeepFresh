@@ -1,20 +1,36 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { TextInput, Button, Text, List } from 'react-native-paper';
-
+import { TextInput, Button, Text, List, IconButton } from 'react-native-paper';
+import { DatePickerInput } from 'react-native-paper-dates';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { router, useRouter } from "expo-router"
 
 const EditProductScreen = () => {
   const [productName, setProductName] = useState('');
   const [expiryDate, setExpiryDate] = useState(null);
+  const [inputDate, setInputDate] = useState<Date | undefined>(undefined);
   const [visible, setVisible] = useState(false);
   const [observation, setObservation] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [datePickerVisible, setDatePickerVisible] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  const handleBackPress = () => {
+    router.push('/_ProductsScreen');
+  }
 
+  const handleEditProduct = () => {
+    router.push('/_ProductsScreen');
+  };
 
   return (
     <View style={styles.container}>
+      <IconButton
+      icon="arrow-left"
+      size={24}
+      style={styles.backButton}
+      onPress={handleBackPress}
+      />
       <View style={styles.imageCard}>
         <Image source={{ uri: '' }} style={styles.image} />
       </View>
@@ -26,14 +42,28 @@ const EditProductScreen = () => {
         style={styles.input}
       />
 
+<SafeAreaProvider>
+      <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+        <DatePickerInput
+          locale="pt"
+          label="Data de Validade"
+          value={inputDate}
+          onChange={(d) => setInputDate(d)}
+          inputMode="start"
+          style={{ backgroundColor: '#ffff' }}
+        />
+      </View>
+    </SafeAreaProvider>
+
       <List.Accordion
-        title="Categoria do Produto"
+        title={selectedCategory ? selectedCategory : "Categoria do Produto"}
         style={styles.accordion}
+        expanded={visible}
         onPress={() => setVisible(!visible)}
       >
-        <List.Item title="Armário" />
-        <List.Item title="Geladeira" />
-        <List.Item title="Freezer" />
+        <List.Item title="Armário" onPress={() => { setSelectedCategory('Armário'); setVisible(false); }} />
+        <List.Item title="Geladeira" onPress={() => { setSelectedCategory('Geladeira'); setVisible(false); }} />
+        <List.Item title="Freezer" onPress={() => { setSelectedCategory('Freezer'); setVisible(false); }}/>
       </List.Accordion>
 
       <TextInput
@@ -50,7 +80,7 @@ const EditProductScreen = () => {
         <Button onPress={() => setQuantity(quantity + 1)}>+</Button>
       </View>
 
-      <Button mode="contained" style={styles.editButton} onPress={() => console.log('Editar Item')}>
+      <Button mode="contained" style={styles.editButton} onPress={handleEditProduct}>
         Editar Item
       </Button>
     </View>
@@ -62,6 +92,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: 'white',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 0,
+    left: 10,
+    zIndex: 10,
+    backgroundColor: 'transparent',
   },
   imageCard: {
     height: 200,
@@ -77,12 +114,14 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 16,
+    backgroundColor: '#ffff'
   },
   dateButton: {
     marginBottom: 16,
   },
   accordion: {
     marginBottom: 16,
+    backgroundColor: '#ffff'
   },
   quantityContainer: {
     flexDirection: 'row',
@@ -99,6 +138,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     marginTop: 2,
+    backgroundColor: '#4285F4'
   },
 });
 
