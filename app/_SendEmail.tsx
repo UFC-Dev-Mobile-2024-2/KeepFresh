@@ -6,28 +6,24 @@ import { router } from 'expo-router';
 const _SendEmail = () => {
   return (
     <View style={styles.container}>
-      {/* Top Bar */}
       <Appbar.Header style={styles.appbar}>
         <Appbar.BackAction onPress={() => router.push('/ForgotPassword')} />
         <Appbar.Content title="Senha esquecida" titleStyle={styles.headerTitle} />
       </Appbar.Header>
 
       <View style={styles.content}>
-        {/* Título */}
         <Text style={styles.title}>E-mail enviado</Text>
 
-        {/* Subtítulo */}
         <Text style={styles.subtitle}>
           Nós mandamos as instruções de redefinição de senha para seu e-mail.
         </Text>
       </View>
 
-      {/* Botão Concluído */}
       <Button
         mode="contained"
         style={[styles.button, { backgroundColor: '#007AFF' }]}
         labelStyle={styles.buttonText}
-        onPress={() => router.push('/login')} // 🔥 Ajustado para ir para a tela de login
+        onPress={() => router.push('/login')}
       >
         CONCLUÍDO
       </Button>
