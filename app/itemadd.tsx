@@ -2,15 +2,22 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router'; 
 
 const SuccessScreen = () => {
+  const router = useRouter(); 
+
+  const handleBackPress = () => {
+    router.push('/_ProductsScreen'); 
+  };
+
   return (
     <View style={styles.container}>
       <MaterialCommunityIcons name="check" size={50} color="#79C930" style={styles.icon} />
       <Text style={styles.message}>
         Item adicionado com sucesso
       </Text>
-      <Button mode="contained" style={styles.button} onPress={() => console.log('Botão pressionado')}>
+      <Button mode="contained" style={styles.button} onPress={handleBackPress}>
         Voltar
       </Button>
     </View>
